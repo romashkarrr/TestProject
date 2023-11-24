@@ -10,6 +10,7 @@ struct ContentView: View {
             Text("Exercise 2")
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        
     }
 }
 
