@@ -1,18 +1,31 @@
 import Foundation
 import SwiftUI
+import AVKit
 
 struct ExerciseView: View {
-    let index: Int
-    let videoNames = ["computer", "matrix", "coding", "coding2"]
-    let exerciseNames = ["Computer", "Matrix", "Coding", "Coding2"]
     
+    var exercise: Exercise {
+      Exercise.exercises[index]
+    }
+    let index: Int
+   
     var body: some View {
-        Text(exerciseNames[index])
+        VStack {
+            HeaderView(exerciseName: exercise.exerciseName)
+            if let url = Bundle.main.url(forResource: exercise.videoName, withExtension: "mp4") {
+              VideoPlayer(player: AVPlayer(url: url))
+            } else {
+                Text("Couldn't find \(exercise.videoName).mp4")
+                  .foregroundColor(.red)
+            }
+            Text("Timer")
+            Text("Start/Done button")
+            Text("Rating")
+            Text("History button")
+        }
     }
 }
 
-struct ExerciseView_Previews: PreviewProvider {
-    static var previews: some View {
-        ExerciseView(index: 0)
-    }
+#Preview {
+    ExerciseView(index: 0)
 }

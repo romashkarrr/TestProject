@@ -4,20 +4,18 @@ struct ContentView: View {
     var body: some View {
         TabView {
             WelcomView()
-            ForEach(0 ..< 4) { numder in
-                ExerciseView(index: numder)
+            ForEach(Exercise.exercises.indices, id: \.self) { index in
+                ExerciseView(index: index)
             }
             Text("Exercise 2")
         }
-        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never)
+            )
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }
 
 
